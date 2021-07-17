@@ -1,0 +1,19 @@
+{
+  "name": "vendor_name/desfaio",
+  "description": "description",
+  "minimum-stability": "stable",
+  "license": "proprietary",
+  "authors": [
+    {
+      "name": "guilherme",
+      "email": "email@example.com"
+    }
+  ],
+  "require": {
+  },
+  "autoload": {
+    "psr-4": {
+      "Pizzaria\\": "src"
+    }
+  }
+}

@@ -1,5 +1,7 @@
 <?php
 
+namespace Pizzaria;
+
 class Comanda
 {
     private Pizza $pizza;

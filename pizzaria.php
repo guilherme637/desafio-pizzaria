@@ -1,19 +1,33 @@
 <?php
 
-require_once 'Pedido.php';
-require_once 'Pizza.php';
-require_once 'Refrigerante.php';
-require_once 'Comanda.php';
+use Pizzaria\Ingrediente;
+use Pizzaria\Pizza;
+use Pizzaria\PizzaMedia;
+use Pizzaria\Produto\Cebola;
+use Pizzaria\Produto\Massa;
+use Pizzaria\Produto\Mussarela;
+use Pizzaria\Produto\Tomate;
+use Pizzaria\Sabor\Portuguesa;
 
-$pedido = new Pedido();
-$ingredientePortugues = new Pizza();
+require_once 'vendor/autoload.php';
 
-$ingredientePortugues->addIngrediente('massa');
-$ingredientePortugues->addIngrediente('palmito');
-$ingredientePortugues->addIngrediente('queijo');
+$pizza = new Pizza();
+$tipoPizza = new PizzaMedia();
+$sabor = new Portuguesa();
+$ingrediente = new Ingrediente();
 
-$portugues = new Comanda($ingredientePortugues, new Refrigerante('coca-cola', 2));
+$tipoPizza->primeiroSabor(new Portuguesa());
+$tipoPizza->segundoSabor(new Portuguesa());
 
-$pedido->pedidos('Guilherme', $portugues);
+$ingrediente->novoIngrediente(new Tomate(1));
+$ingrediente->novoIngrediente(new Massa(1));
+$ingrediente->novoIngrediente(new Cebola(2));
+$ingrediente->novoIngrediente(new Mussarela(10));
 
-var_dump($ingredientePortugues->relatorioIngrediente(), $pedido->verificarPedido());
+$sabor->addIngrediente($ingrediente);
+
+$pizza->addTipoPizza($tipoPizza);
+$pizza->addSabor($sabor);
+echo $ingrediente->valor();
+exit();
+

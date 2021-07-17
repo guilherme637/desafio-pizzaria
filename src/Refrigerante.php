@@ -1,5 +1,7 @@
 <?php
 
+namespace Pizzaria;
+
 class Refrigerante
 {
     private string $sabor;
