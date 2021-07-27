@@ -1,33 +1,27 @@
 <?php
 
-use Pizzaria\Ingrediente;
-use Pizzaria\Pizza;
-use Pizzaria\PizzaMedia;
-use Pizzaria\Produto\Cebola;
-use Pizzaria\Produto\Massa;
-use Pizzaria\Produto\Mussarela;
-use Pizzaria\Produto\Tomate;
+use Pizzaria\Entity\Item;
+use Pizzaria\Entity\Comanda;
+use Pizzaria\Entity\Pedido;
+use Pizzaria\Entity\PizzaMedia;
+use Pizzaria\QuantidadeEnum;
+use Pizzaria\Entity\Sabor;
+use Pizzaria\Sabor\Mussarela;
 use Pizzaria\Sabor\Portuguesa;
 
 require_once 'vendor/autoload.php';
 
-$pizza = new Pizza();
-$tipoPizza = new PizzaMedia();
-$sabor = new Portuguesa();
-$ingrediente = new Ingrediente();
+$filaPedido =  new Pedido();
+$pedidoGuilherme = new Comanda();
+$item = new Item();
+$pizza = new PizzaMedia();
+$sabor = new Sabor();
 
-$tipoPizza->primeiroSabor(new Portuguesa());
-$tipoPizza->segundoSabor(new Portuguesa());
+$sabor->addIngrediente(new Portuguesa());
+$sabor->addIngrediente(new Mussarela());
+$pizza->addPrimeiroSabor($sabor);
+$pizza->addPrimeiroSabor($sabor);
+$item->addItem($pizza, QuantidadeEnum::UM);
+$pedidoGuilherme->addPedido($item);
 
-$ingrediente->novoIngrediente(new Tomate(1));
-$ingrediente->novoIngrediente(new Massa(1));
-$ingrediente->novoIngrediente(new Cebola(2));
-$ingrediente->novoIngrediente(new Mussarela(10));
-
-$sabor->addIngrediente($ingrediente);
-
-$pizza->addTipoPizza($tipoPizza);
-$pizza->addSabor($sabor);
-echo $ingrediente->valor();
-exit();
-
+$pedidoGuilherme->comanda();

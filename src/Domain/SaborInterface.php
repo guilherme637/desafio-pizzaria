@@ -2,7 +2,11 @@
 
 namespace Pizzaria\Domain;
 
+use Ds\Vector;
+
 interface SaborInterface
 {
-    public function addIngrediente(IngredienteInterface $ingrediente);
+    public function addIngrediente(SaborPizzaInterface $ingrediente): void;
+    public function visualizarIngredientes(): Vector;
+
 }
